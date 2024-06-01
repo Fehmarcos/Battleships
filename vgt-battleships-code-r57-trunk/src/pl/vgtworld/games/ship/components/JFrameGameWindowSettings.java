@@ -315,7 +315,7 @@ public class JFrameGameWindowSettings
 				oGameStatus.computerVictory();
 				oGameStatusComponent.updateData();
 				int iComponentsQuantity = oBoardPanelContainer.getComponentCount();
-				JComponentBoard oBoardComponent;
+				//JComponentBoard oBoardComponent;
 				for (int i = 0; i < iComponentsQuantity; ++i)
 					{
 					oBoardComponent = (JComponentBoard)oBoardPanelContainer.getComponent(i);

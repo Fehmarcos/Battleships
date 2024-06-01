@@ -131,8 +131,6 @@ public class JComponentBoard
 			}
 		oTimer = new Timer(1000, this);
 		oTimer.setRepeats(false);
-		// setMinimumSize (new Dimension (iWidth, iHeight));
-		// setPreferredSize (new Dimension (iWidth, iHeight));
 		}
 	/**
 	 * The method allows you to define whether the panel should display also the wrong positions of the ships.
@@ -163,7 +161,6 @@ public class JComponentBoard
 		if (iHighlightColorNumber < 0)
 			{
 			iHighlightColorNumber = 0;
-			//oTimer.stop();
 			}
 		repaint();
 		}
@@ -244,7 +241,7 @@ public class JComponentBoard
 						{
 						case SHIP_BOARD:
 							g.setColor(oShipColor);
-							if (bViewShips == true)
+							if (bViewShips)
 								bdraw = true;
 							break;
 						case CUSTOMS_SHOT_BOARD:
@@ -257,7 +254,7 @@ public class JComponentBoard
 							bdraw = true;
 							break;
 						}
-					if (bdraw == true)
+					if (bdraw)
 						{
 						g.fillRect(iPositionX, iPositionY, iPositionWidth, iPositionHeight);
 						}

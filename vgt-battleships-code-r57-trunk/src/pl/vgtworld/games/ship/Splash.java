@@ -18,10 +18,10 @@ import javax.swing.SwingConstants;
  */
 public class Splash {
     
-    private final int imgWidth = 1000;
-    private final int imgHeight = 900;
-    private final int splashTime = 6000;
-    private final String imgPath = "/pl/vgtworld/games/ship/img/splash.png";
+    private static final int IMGWIDTH  = 1000;
+    private static final int IMGHEIGHT = 900;
+    private static final int SPLASHTIME = 6000;
+    private static final String IMGPATH = "/pl/vgtworld/games/ship/img/splash.png";
     
     public Splash(){
         
@@ -29,7 +29,7 @@ public class Splash {
         
         windowSplash.getContentPane().add(
             new JLabel(
-                    "", new ImageIcon(getClass().getResource(imgPath)),
+                    "", new ImageIcon(getClass().getResource(IMGPATH)),
                     SwingConstants.CENTER)
         );
         
@@ -37,15 +37,15 @@ public class Splash {
         Dimension dimension = toolkit.getScreenSize();
         
         windowSplash.setBounds(
-                (dimension.width - imgWidth) / 2, 
-                (dimension.height - imgHeight) / 2, 
-                imgWidth,
-                imgHeight);
+                (dimension.width - IMGWIDTH) / 2, 
+                (dimension.height - IMGHEIGHT) / 2, 
+                IMGWIDTH,
+                IMGHEIGHT);
         
         windowSplash.setVisible(true);
         
         try{
-            Thread.sleep(splashTime);
+            Thread.sleep(SPLASHTIME);
         }catch(InterruptedException e){}
         
         windowSplash.dispose(); 
