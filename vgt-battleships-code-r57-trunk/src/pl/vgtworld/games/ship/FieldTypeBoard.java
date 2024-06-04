@@ -1,7 +1,7 @@
 package pl.vgtworld.games.ship;
 
 /**
- * Enumerated type representing the available field types on the board.
+ * Enumerated type representing a board's field types.
  * 
  * @author VGT
  * @version 1.0

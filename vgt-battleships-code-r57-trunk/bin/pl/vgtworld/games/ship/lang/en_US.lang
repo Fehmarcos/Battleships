@@ -1,0 +1,81 @@
+mainWindow.title = Battleships
+
+menu.game = Game
+menu.options = Options
+menu.help = Help
+
+action.newGame = New Game
+action.newGame.desc = Starts new game.
+action.settings = Settings
+action.settings.desc = Allows to change size of board, number and size of ships and difficulty level.
+action.exit = Close
+action.exit.desc = Shut down game.
+action.about = About
+action.about.desc = Info about author.
+
+shipPlacement.list.header = Put on board ships specified below:
+shipPlacement.list.prefix = Number of
+shipPlacement.list.size = size
+
+action.shipPlacement.accept = Accept
+action.shipPlacement.accept.desc = Verifies ship placement on board and starts game
+action.shipPlacement.random = Random
+action.shipPlacement.random.desc = Puts all ships randomly on board
+action.shipPlacement.clear = Clear
+action.shipPlacement.clear.desc = Removes all ships from board
+
+settingsWindow.title = Settings
+settings.boardWidth = Board width
+settings.boardHeight = Board height
+settings.difficulty = Difficulty level
+settings.shipsShape = Shape of the ships
+settings.shipsShapeCheckbox = Ships only as vertical / horizontal lines
+settings.saveAsDefault = Save settings as default.
+
+action.settings.save = Save
+action.settings.save.desc = Saves current settings.
+action.settings.cancel = Cancel
+action.settings.cancel.desc =
+
+settings.shipList.title = Ship list
+action.settings.shipList.add = Add
+action.settings.shipList.add.desc = Adds new ship with size 1
+action.settings.shipList.delete = Del
+action.settings.shipList.delete.desc = Delete selected ships
+action.settings.shipList.increase = Inc
+action.settings.shipList.increase.desc = Increase size of selected ships
+action.settings.shipList.decrease = Dec
+action.settings.shipList.decrease.desc = Decrease size od selected ships
+
+gameStatus.Player = Player
+gameStatus.AI = Computer
+gameStatus.points = Points
+gameStatus.shipStatus1 = Undamaged
+gameStatus.shipStatus2 = Not destroyed
+gameStatus.fleet = Naval fleet
+
+shipName.size1 = Corvette
+shipName.size1.plural = Corvettes
+shipName.size2 = Frigate
+shipName.size2.plural = Frigates
+shipName.size3 = Destroyer
+shipName.size3.plural = Destroyers
+shipName.size4 = Battleship
+shipName.size4.plural = Battleships
+shipName.size5 = Aircarft Carrier
+shipName.size5.plural = Aircarft Carriers
+
+message.hit1 = a hit!
+message.hit2 = a hit! Ship destroyed!
+message.win = You win! Congratulations.
+message.lose = You lose! Try again.
+
+errorMsg.windowTitle = Error
+errorMsg.shipPlacement.invalidShipPlacement = Invalid ship placement
+errorMsg.shipPlacement.randomShipPlacementFail = Random ship placement failed
+errorMsg.shipPlacement.computerShipPlacementError = An error occurred while placing computer's ships. Try again?
+errorMsg.shipPlacement.computerShipPlacementFail = Computer's ships placement failed.\nIf error is repeatable, increase size of the board, or decrease number and / or size of ships.
+errorMsg.settings.invalidBoardSize = Invalid board size
+errorMsg.settings.noShip = There is no ship defined
+errorMsg.settings.shipList.noShipSelected = No ship selected
+errorMsg.settings.saveDefault = Can't save default configuration.

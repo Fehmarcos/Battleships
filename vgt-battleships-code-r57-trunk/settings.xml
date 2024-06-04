@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="plansza_Width">10</entry>
+<entry key="proste_linie">tak</entry>
+<entry key="plansza_Height">10</entry>
+<entry key="statek11">6</entry>
+<entry key="poziom_trudnosci">50</entry>
+<entry key="statek10">5</entry>
+<entry key="statek5">2</entry>
+<entry key="statek4">2</entry>
+<entry key="statek3">1</entry>
+<entry key="statek2">1</entry>
+<entry key="statek9">4</entry>
+<entry key="ilosc_statkow">11</entry>
+<entry key="statek8">3</entry>
+<entry key="statek7">3</entry>
+<entry key="statek6">2</entry>
+<entry key="statek1">1</entry>
+</properties>

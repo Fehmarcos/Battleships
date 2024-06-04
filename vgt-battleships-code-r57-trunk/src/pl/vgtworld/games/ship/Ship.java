@@ -5,7 +5,7 @@ import pl.vgtworld.exceptions.DeveloperException;
 import pl.vgtworld.tools.Position;
 
 /**
- * A class representing a ship in board.
+ * Class representing a ship.
  * 
  * @author VGT
  * @version 1.0
@@ -13,30 +13,28 @@ import pl.vgtworld.tools.Position;
 public class Ship
 	{
 	/**
-	 * Reference to the board object where the ship will be placed.
 	 */
 	private Board oBoard;
 	/**
-	 * The size of the vessel is the number of halves it occupies on the board.
 	 */
 	private int iSize;
 	/**
-	 * A table containing the co-ordinates of the various fields of the ship.
+	 * A table containing the ship's coordinates on the board.
 	 */
 	private Position[] aCoordenates;
 	/**
-	 * A table storing information whether or not individual ship positions have been hit.
+	 * A table containing the ship's hit coordinates.
 	 */
 	private boolean[] aHits;
 	/**
-	 * Number of hits hit by the ship.
+	 * Number of hits the ship received.
 	 */
 	private int iHitsQuantity;
 	/**
-	 * Default constructor - creates a new ship with the given Sizeze.
+	 * Default constructor - creates a ship with a given size.
 	 * 
-	 * @param iSize The number of spaces the ship takes on board.
-	 * @param oBoard A reference to the board object where the ship is to be placed.
+	 * @param iSize The number of spaces a ship takes on the board.
+	 * @param oBoard The board object where the ship is placed.
 	 */
 	public Ship(int iSize, Board oBoard)
 		{
@@ -56,7 +54,7 @@ public class Ship
 		iHitsQuantity = 0;
 		}
 	/**
-	 * Display information about the ship on the standard exit.
+	 * Display information about the ship.
 	 */
 	@Override public String toString()
 		{
@@ -72,12 +70,13 @@ public class Ship
 		return sReturn;
 		}
 	/**
-	 * Returns an object containing co-ordinates position with the given number.
+	 * Returns an object containing coordinates with the given number.
 	 * 
-	 * @param iNumberFields 
-The position number whose co-ordinates are to be returned (counted from 1).
-	 * @return co-ordinates position with the given number.
-	 * @throws ParameterException Throws an exception if the position number is less than 1 or greater from Ship Size. 
+	 * @param iNumberFields The position whose coordinates are to be
+         * returned (counted from 1).
+	 * @return coordinates with the given number.
+	 * @throws ParameterException Throws an exception if the number is less
+         * than 1 or greater than the ship size. 
 	 */
 	public Position getField(int iNumberFields) throws ParameterException
 		{
@@ -86,13 +85,14 @@ The position number whose co-ordinates are to be returned (counted from 1).
 		return aCoordenates[ iNumberFields - 1 ];
 		}
 	/**
-	 * If there is a ship field in the given coordinates, the method returns its number,
-	 * otherwise it returns 0.
+	 * Returns a ship number in case said ship is in a field, otherwise
+         * returns 0.
 	 * 
 	 * @param iX Coordinate X in board.
 	 * @param iY Coordinate Y in board.
 	 * @return Ship position number (counted from 1).
-	 * @throws ParameterException Throws an exception if the given co-ordinates is outside the range of the board.
+	 * @throws ParameterException Throws an exception if the coordinates are
+         * outside the board's range.
 	 */
 	public int getNumberPosition(int iX, int iY) throws ParameterException
 		{
@@ -106,7 +106,7 @@ The position number whose co-ordinates are to be returned (counted from 1).
 		return 0;
 		}
 	/**
-	 * The method returns the Ship Size.
+	 * Returns the ship size.
 	 * 
 	 * @return Ship size.
 	 */
@@ -115,19 +115,18 @@ The position number whose co-ordinates are to be returned (counted from 1).
 		return iSize;
 		}
 	/**
-	 * The method returns the number of ship halves hit.
+	 * Returns the ship parts that were hit.
 	 * 
-	 * @return Number of poles hit.
+	 * @return Number of ship parts hit.
 	 */
 	public int getNumberOfHits()
 		{
 		return iHitsQuantity;
 		}
 	/**
-	 * The method returns whether the ship has not received any hits.
+	 * Returns whether the ship has not received any hits.
 	 * 
-	 * @return Returns TRUE if neither half of the ship has been hit, or FALSE.
-	 * if there is at least one hit.
+	 * @return Returns TRUE if the ship is intact, or FALSE otherwise.
 	 */
 	public boolean getUntouched()
 		{
@@ -137,10 +136,9 @@ The position number whose co-ordinates are to be returned (counted from 1).
 			return false;
 		}
 	/**
-	 * The method returns information whether the ship has been hit at least once.
+	 * Returns information whether the ship has been hit at least once.
 	 * 
-	 * @return Returns TRUE if the ship has at least one hit square, or FALSE,
-	 * if all positions are intact.
+	 * @return Returns TRUE if the ship has been hit, or FALSE otherwise.
 	 */
 	public boolean getHits()
 		{
@@ -150,10 +148,9 @@ The position number whose co-ordinates are to be returned (counted from 1).
 			return false;
 		}
 	/**
-	 * The method returns information whether the ship has been sunk, i.e. all its positions have been hit.
+	 * Returns information whether the ship has sunk.
 	 * 
-	 * @return Returns TRUE if all ship positions are hit, or FALSE,
-	 * if at least one square is missed.
+	 * @return Returns TRUE if all ship positions are hit, or FALSE otherwise.
 	 */
 	public boolean getSunk()
 		{
@@ -163,7 +160,7 @@ The position number whose co-ordinates are to be returned (counted from 1).
 			return false;
 		}
 	/**
-	 * The method returns a reference of the board object it is on.
+	 * Returns a reference of the board object it is on.
 	 * 
 	 * @return The board where the ship is placed.
 	 */
@@ -172,15 +169,16 @@ The position number whose co-ordinates are to be returned (counted from 1).
 		return oBoard;
 		}
 	/**
-	 * Allows you to set co-ordinates position with the given number. <br />
+	 * Lets you set coordinates with a given number.
 	 * 
-	 * The method also ensures that the spaces occupied by the ship are properly marked on the board.
+	 * It also marks the ship's occupied spaces on the board.
 	 * 
-	 * @param iNumberFields Numer position statku (counted from 1).
-	 * @param iX Coordinate X na board (counted from 0).
-	 * @param iY Coordinate Y na board (counted from 0).
-	 * @throws ParameterException Throws an exception if the position number is outside the range of the ship half,
-	 * when co-ordinates are outside the scope of the board, or when it is not possible to place a ship on the given board space
+	 * @param iNumberFields Number of ship spaces (counted from 1).
+	 * @param iX X coordinate (counted from 0).
+	 * @param iY Y coordinate (counted from 0).
+	 * @throws ParameterException Throws an exception if the number
+         * is outside a ship space's range, when coordinates are outside the
+         * board range, or when it's not possible to place a ship on the board.
 	 */
 	public void setField(int iNumberFields, int iX, int iY) throws ParameterException
 		{
@@ -214,32 +212,27 @@ The position number whose co-ordinates are to be returned (counted from 1).
 			}
 		}
 	/**
-	 * The method sets the co-ordinates of all half of the ship to the initial default Values ​​(-1, -1).
+	 * Sets the coordinates of all ship parts to the default values ​​(-1, -1).
+         * @throws ParameterException 
 	 */
-	public void resetFields()
-		{
-		try
-			{
-			for (int i = 1; i <= iSize; ++i)
-				setField(i, -1, -1);
-			}
-		catch (ParameterException e)
-			{
-			throw new DeveloperException(e);
-			}
-		}
+	public void resetFields() throws ParameterException
+        {
+                for (int i = 1; i <= iSize; ++i)
+                    setField(i, -1, -1);
+        }
 	/**
-	 * The method checks if the shot for the given co-ordinates is accurate. <br />
+	 * Checks whether a shot within a certain coordinate hits a ship.
 	 * 
-	 * If so, marks the ship's space as hit and returns TRUE.
-	 * otherwise it returns FALSE. <br />
+	 * If so, marks the ship's space as hit and returns TRUE, otherwise it
+         * returns FALSE.
 	 * 
-	 * The method also ensures the correct marking of the shot fields on the board. <br />
+	 * It also marks the shot fields on a board.
 	 * 
-	 * @param iX Coordinate X shot.
-	 * @param iY Coordinate Y shot.
-	 * @return Returns TRUE for a hit, or FALSE if the shot was missed.
-	 * @throws ParameterException Throws an exception if the co-ordinates given are outside the scope of the board.
+	 * @param iX X coordinate shot.
+	 * @param iY Y coordinate shot.
+	 * @return Returns TRUE for a hit, or FALSE otherwise.
+	 * @throws ParameterException Throws an exception if the coordinates
+         * are outside the board's range.
 	 */
 	public boolean shot(int iX, int iY) throws ParameterException
 		{
@@ -288,7 +281,7 @@ The position number whose co-ordinates are to be returned (counted from 1).
 			}
 		}
 	/**
-	 * the method returns whether the ship is sunk
+	 * Returns whether the ship has sunk.
 	 * 
 	 * @deprecated replaced by method {@link #getSunk()}
 	 * @return returns TRUE if the ship is sunk, FALSE otherwise

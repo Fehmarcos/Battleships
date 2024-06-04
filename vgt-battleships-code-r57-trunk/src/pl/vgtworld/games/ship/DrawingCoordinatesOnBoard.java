@@ -3,8 +3,8 @@ package pl.vgtworld.games.ship;
 import pl.vgtworld.tools.Position;
 
 /**
- * Abstract class containing static methods to convert between coordinates 
- * on a drawn board in pixels, and the coordinates in the fields.
+ * Abstract class containing static methods that connect coordinates on a pixel
+ * board to coordinates in the field.
  * 
  * @author VGT
  * @version 1.0
@@ -12,27 +12,26 @@ import pl.vgtworld.tools.Position;
 public abstract class DrawingCoordinatesOnBoard
 	{
 	/**
-	 * The value of the margin by which the drawn board will be moved away 
-         * from the edge of the panel on which it is drawn.<br />
+	 * Value of the margin by which the drawn board will be moved away 
+         * from the panel's edge.
 	 * 
 	 * Value expressed as a percentage of the panel width.
 	 */
 	static final int iMargins = 5;
 	/**
 	 * A method that converts the coordinates of a click on a component 
-         * to the coordinates of the field on the board that you clicked.<br />
+         * to a board's field coordinates.
 	 * 
-	 * Returns an object containing the coordinates of the
-         * clicked field, or the coordinates (-1, -1) if the click did not 
-         * hit any field.
+	 * Returns an object containing clicked field's coordinates,
+         * or the coordinates (-1, -1) if the click didn't hit any field.
 	 * 
-	 * @param iPanelWidth The width of the panel drawing the board in pixels.
-	 * @param iPanelHeight The height of the panel drawing the board in pixels.
-	 * @param iBoardWidth Board width (number of fields).
-	 * @param iBoardHeight The height of the board (number of fields).
-	 * @param iX X coordinate of the clicked pixel.
-	 * @param iY The Y coordinate of the pixel you clicked.
-	 * @return Returns a position object with the coordinates of the field you clicked.
+	 * @param iPanelWidth Panel width, used to draw the board in pixels.
+	 * @param iPanelHeight Panel height.
+	 * @param iBoardWidth Board width.
+	 * @param iBoardHeight Board height.
+	 * @param iX X coordinate of the selected pixel.
+	 * @param iY Y coordinate of the selected pixel.
+	 * @return Returns a position object with the selected field's coordinates.
 	 */
 	public static Position pixToField(int iPanelWidth, int iPanelHeight, int iBoardWidth, int iBoardHeight, int iX, int iY)
 		{
@@ -67,20 +66,20 @@ public abstract class DrawingCoordinatesOnBoard
 		return oPosition;
 		}
 	/**
-	 * The method converts the coordinates of the fields on the board 
-         * to the coordinates of the top left pixel of the given field in the board drawn on the panel.<br />
+	 * The method converts the board's field coordinates to the coordinates
+         * of the field's top left pixel in the panel's drawn board.
 	 * 
 	 * WARNING! These coordinates are already outside the field (the fields
          * are separated by a single row of pixels in order to draw the mesh)
          * and contain the point where the mesh crosses between the fields.
 	 * 
-	 * @param iPanelWidth Width panel in pixel.
-	 * @param iPanelHeight Height panel in pixel.
-	 * @param iBoardWidth Width board in boxes.
-	 * @param iBoardHeight Height board in boxes.
-	 * @param iXField Coordinate X converted position (counted from 0).
-	 * @param iYField Coordinate Y converted position (counted from 0).
-	 * @return Co-ordinates pixels finder sie by Leftm top corner drawn position.
+	 * @param iPanelWidth Panel width.
+	 * @param iPanelHeight Panel height.
+	 * @param iBoardWidth Board width.
+	 * @param iBoardHeight Board height.
+	 * @param iXField X coordinate's converted position (counted from 0).
+	 * @param iYField Y coordinate's converted position (counted from 0).
+	 * @return Pixel coordinates of a drawn field's top left corner position.
 	 */
 	public static Position fieldToPixTopLeft(int iPanelWidth, int iPanelHeight, int iBoardWidth, int iBoardHeight, int iXField, int iYField)
 		{
@@ -108,17 +107,16 @@ public abstract class DrawingCoordinatesOnBoard
 		return oPosition;
 		}
 	/**
-	 * The method in operation is similar to {@link #fieldToPixTopLeft
-         * (int, int, int, int, int, int)} except that it returns the 
-         * coordinates of the pixel at the bottom right corner of the field.
+	 * This method is similar to the last one, except it returns the 
+         * field's bottom right pixel coordinates.
 	 * 
-	 * @param iPanelWidth The width of the board in pixels.
-	 * @param iPanelHeight The Height of the board in pixels.
-	 * @param iBoardWidth The width of the board in boxes.
-	 * @param iBoardHeight The height of the board in boxes.
-	 * @param iXField X coordinate of the field to be converted (counted from 0).
-	 * @param iYField Y coordinate of the field to be converted (counted from 0).
-	 * @return Coordinates of the pixel at the bottom right corner of the drawn field.
+	 * @param iPanelWidth Panel width.
+	 * @param iPanelHeight Panel height.
+	 * @param iBoardWidth Board width.
+	 * @param iBoardHeight Board height.
+	 * @param iXField X coordinate of the converted field (counted from 0).
+	 * @param iYField Y coordinate of the converted field (counted from 0).
+	 * @return Pixel coordinates of a drawn field's bottom right corner position.
 	 */
 	public static Position fieldToPixBottomRight(int iPanelWidth, int iPanelHeight, int iBoardWidth, int iBoardHeight, int iXField, int iYField)
 		{

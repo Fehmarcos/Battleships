@@ -5,7 +5,7 @@ import pl.vgtworld.exceptions.DeveloperException;
 import pl.vgtworld.tools.Position;
 
 /**
- * A class dealing with creating a ship container object on the basis of a provided board with marked ship positions.
+ * Class that creates a ship object on a provided board, with marked ship positions.
  * 
  * @author VGT
  * @version 1.0
@@ -13,21 +13,18 @@ import pl.vgtworld.tools.Position;
 public class ShipGenerator
 	{
 	/**
-	 *  Board with marked arrangement of ships. <br />
-	 * 
-	 * Ultimately, it will be used as a ship container facility board.
 	 */
 	private Board oBoard;
 	/**
-	 * Ship container to be created on the basis of the board provided.
+	 * Ship container.
 	 */
 	private ShipIterator oShips;
 	/**
-	 *  Auxiliary board that loads the positions of all marked fields on the board.
+	 * Loads the positions of all board fields with ships.
 	 */
 	private Position[] aShipSpaces;
 	/**
-	 * The current number of fields stored in the aShipSpaces array.
+	 * Number of fields stored in the aShipSpaces array.
 	 */
 	private int iNumberOfShipsField;
 	/**
@@ -43,7 +40,7 @@ public class ShipGenerator
 		iNumberOfShipsField = 0;
 		}
 	/**
-	 * The main method that starts the process of creating a ship container on the basis of the board provided in the constructor.
+	 * Starts the process of creating a ship container on the board.
 	 * 
 	 * @return Returns the created ship container.
 	 */
@@ -75,10 +72,11 @@ public class ShipGenerator
 			}
 		}
 	/**
-	 * The method searches for a ship on board position <br />
+	 * Searches for ships on a board position.
 	 * 
-	 * The list of their positions is written to the aShipSpaces array, and the number of fields to iNumberOfShipsField.
-	 * Finally, it also cleans the board from the marked fields to prepare it for operation as part of the ship container facility being created
+	 * Their positions are written in the aShipSpaces array, and the number
+         * of fields to iNumberOfShipsField. It also cleans the board's marked
+         * fields to prepare it as part of the ship container being created.
 	 */
 	private void findField()
 		{
@@ -112,11 +110,13 @@ public class ShipGenerator
 			}
 		}
 	/**
-	 * The method takes and removes the position from the aShipSpaces array trying to generate a list of fields for a single ship. <br />
+	 * Takes and removes the position from the aShipSpaces array, generating
+         * a list of fields for a ship.
 	 * 
-	 * After fetching the first position, it scans the list of others until it obtains an array containing all the positions linked with each position.
+	 * After fetching the first position, it scans the list until it obtains
+         * an array with all the positions linked with eachother.
 	 * 
-	 * @return Returns an array containing a list of fields for one ship.
+	 * @return Returns an array containing a list of fields for a ship.
 	 */
 	private Position[] generateShip()
 		{
@@ -157,14 +157,16 @@ public class ShipGenerator
 			}
 		}
 	/**
-	 * The method checks if in the list of fields there is a field adjacent to the field passed in the parameter. <br />
+	 * Checks if there are adjacent fields to the fields passed in
+         * the parameter.
 	 * 
 	 * If so, returns its index in the aShipSpaces array.
-	 * If there are more than one such field, the index of the first position found will be returned.
-	 * If the given position has no neighbors, the value -1 will be returned.
+	 * If there's more than one field, returns the first position's index.
+	 * If this position has no neighbors, returns -1.
 	 * 
-	 * @param oPosition co-ordinates the position for which to look for neighbors.
-	 * @return Returns the index position of the neighbor, or -1 if none is found.
+	 * @param oPosition coordinates to look for adjacent fields.
+	 * @return Returns the index position of the neighbor,
+         * or -1 if none is found.
 	 */
 	private int findNeighbor(Position oPosition)
 		{
@@ -181,11 +183,13 @@ public class ShipGenerator
 		return -1;
 		}
 	/**
-	 * The method removes the element with the given index from the list of fields in aShipSpaces and returns it.
+	 * Removes the element with a given index from aShipSpaces and
+         * returns it.
 	 * 
 	 * @param iIndex Index position to be removed.
 	 * @return Returns the field removed.
-	 * @throws ParameterException Throws an exception if index is outside the available field range.
+	 * @throws ParameterException Throws an exception if index is outside
+         * the available field range.
 	 */
 	private Position getField(int iIndex) throws ParameterException
 		{

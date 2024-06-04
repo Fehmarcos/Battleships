@@ -10,7 +10,7 @@ import pl.vgtworld.exceptions.ParameterException;
 import pl.vgtworld.games.ship.components.JFrameGameWindowSettings;
 
 /**
- * The class that stores the main game settings..
+ * Class that stores the main game settings.
  * 
  * @author VGT
  * @version 1.1
@@ -18,15 +18,13 @@ import pl.vgtworld.games.ship.components.JFrameGameWindowSettings;
 public class Settings
 	{
 	/**
-	 * It stores the name of the file where the default settings are stored.
+	 * Stores the filename containing the default settings.
 	 */
 	public static final String DEFAULT_SETTINGS = "settings.xml";
 	/**
-	 * Game board width.
 	 */
 	private int iBoardWidth;
 	/**
-	 * The height of the game board.
 	 */
 	private int iBoardHeight;
 	/**
@@ -34,13 +32,13 @@ public class Settings
 	 */
 	private int iDifficultyLevel;
 	/**
-	 * Ship shape limited to vertical / horizontal lines.
+	 * Determines whether ship shapes must be straight.
 	 * 
 	 * @since 1.1
 	 */
 	private boolean bStraightLines;
 	/**
-	 * A container that stores the size of individual ships.
+	 * A container representing the player's fleet.
 	 */
 	private ArrayList<Integer> aShips;
 	/**
@@ -87,25 +85,25 @@ public class Settings
 			}
 		}
 	/**
-	 * The method returns the width of the board.
+	 * Returns the board's width.
 	 * 
-	 * @return Returns the number of fields that are the width of the board.
+	 * @return Returns the number of fields that are the board's width.
 	 */
 	public int getBoardWidth()
 		{
 		return iBoardWidth;
 		}
 	/**
-	 * The method returns the height of the board.
+	 * Returns the board's height.
 	 * 
-	 * @return Returns the number of fields that are the height of the board.
+	 * @return Returns the number of fields that are the board's height.
 	 */
 	public int getBoardHeight()
 		{
 		return iBoardHeight;
 		}
 	/**
-	 * The method returns the AI difficulty level.
+	 * Returns the AI difficulty level.
 	 * 
 	 * @return Returns a number between 1-100 that is the AI difficulty level.
 	 */
@@ -114,9 +112,9 @@ public class Settings
 		return iDifficultyLevel;
 		}
 	/**
-	 * Returns information if the ships can only be vertical / horizontal lines.
+	 * Returns whether the ships have to be in straight lines.
 	 * 
-	 * @return Returns TRUE if the ships can only be lines, FALSE otherwise.
+	 * @return Returns TRUE if the ships must be lines, FALSE otherwise.
 	 * @since 1.1
 	 */
 	public boolean getStraightLines()
@@ -124,7 +122,7 @@ public class Settings
 		return bStraightLines;
 		}
 	/**
-	 * Returns an array containing the size of the individual ships.
+	 * Returns an array containing a fleet and their sizes.
 	 * 
 	 * @return An int table containing the size of each ship.
 	 */
@@ -145,10 +143,10 @@ public class Settings
 		return (int)aShips.size();
 		}
 	/**
-	 * Returns the number of ships of the given size.
+	 * Returns the number of ships of a given size.
 	 * 
-	 * @param iSize Size of the ships to be counted.
-	 * @return Number of ships of the given size.
+	 * @param iSize Ship size.
+	 * @return Number of ships of a given size.
 	 */
 	public int getNumberOfShips(int iSize)
 		{
@@ -159,9 +157,9 @@ public class Settings
 		return iQuantity;
 		}
 	/**
-	 * Returns the size of the largest ship.
+	 * Returns the largest ship size.
 	 * 
-	 * @return The size of the largest ship.
+	 * @return the largest ship size.
 	 */
 	public int getMaxShipSize()
 		{
@@ -172,7 +170,7 @@ public class Settings
 		return iMax;
 		}
 	/**
-	 * Lets you set a new size for the game board.
+	 * Lets you set a new board size.
 	 * 
 	 * @param iWidth New board width.
 	 * @param iHeight New board height.
@@ -183,7 +181,7 @@ public class Settings
 		iBoardHeight = iHeight;
 		}
 	/**
-	 * It allows you to set a new board width.
+	 * Lets you set a new board width.
 	 * 
 	 * @param iWidth New board width.
 	 */
@@ -192,7 +190,7 @@ public class Settings
 		iBoardWidth = iWidth;
 		}
 	/**
-	 * It allows you to set a new height of the board.
+	 * Lets you set a new board height.
 	 * 
 	 * @param iHeight New board height.
 	 */
@@ -201,9 +199,9 @@ public class Settings
 		iBoardHeight = iHeight;
 		}
 	/**
-	 * Lets you set a property that determines the shape of ships allowed.
+	 * Lets you set a property that limits allowed ship shapes.
 	 * 
-	 * @param bStaightLines TRUE means that ships can only be vertical / horizontal lines.
+	 * @param bStaightLines TRUE means that ships can only be straight lines.
 	 * @since 1.1
 	 */
 	public void setStraightLines(boolean bStaightLines)
@@ -211,10 +209,11 @@ public class Settings
 		this.bStraightLines = bStaightLines;
 		}
 	/**
-	 * Allows you to set a new difficulty level.
+	 * Lets you set a new difficulty level.
 	 * 
 	 * @param iDifficultyLevel AI difficulty level.
-	 * @throws ParameterException Throws an exception if the set severity level is not in the range 1-100
+	 * @throws ParameterException Throws an exception if the AI level isn't
+         * between 1-100.
 	 */
 	public void setDifficultyLevel(int iDifficultyLevel) throws ParameterException
 		{
@@ -223,9 +222,9 @@ public class Settings
 		this.iDifficultyLevel = iDifficultyLevel;
 		}
 	/**
-	 * Adds another ship of the specified size to the ship list.
+	 * Adds a ship to the fleet.
 	 * 
-	 * @param iSize Ship size to add.
+	 * @param iSize Ship size.
 	 * @throws ParameterException Throws an exception if the given size is less than 1.
 	 */
 	public void addShip(int iSize) throws ParameterException
@@ -235,10 +234,10 @@ public class Settings
 		aShips.add(iSize);
 		}
 	/**
-	 * Removes a ship with the given index from a container.
+	 * Removes a given ship from the fleet.
 	 * 
 	 * @param iIndex Index ship to be removed (counted from 0).
-	 * @throws ParameterException Throws an exception if the ship with the given index does not exist.
+	 * @throws ParameterException Throws an exception if a ship's given index doesn't exist.
 	 */
 	public void removeShip(int iIndex) throws ParameterException
 		{
@@ -254,7 +253,7 @@ public class Settings
 		aShips.clear();
 		}
 	/**
-	 * saves the current settings to a file where the default settings loaded when creating the object are stored
+	 * Saves the current settings to the file.
 	 */
 	public void saveDefaultSettings()
 		{

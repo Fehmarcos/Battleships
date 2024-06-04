@@ -1,0 +1,81 @@
+mainWindow.title = Statki
+
+menu.game = Gra
+menu.options = Opcje
+menu.help = Pomoc
+
+action.newGame = Nowa gra
+action.newGame.desc = Rozpoczyna nową grę.
+action.settings = Ustawienia
+action.settings.desc = Pozwala na zmianę Sizeu planszy, ilości i wielkości statków, oraz poziomu trudności.
+action.exit = Wyjście
+action.exit.desc = Zamyka aFileację.
+action.about = o programie
+action.about.desc = Informacje o autorze.
+
+shipPlacement.list.header = Umieść na planszy następujące statki:
+shipPlacement.list.prefix = Ilość
+shipPlacement.list.size = Size
+
+action.shipPlacement.accept = Zatwierdź
+action.shipPlacement.accept.desc = Weryfikuje rozmieszczenie statków na planszy i rozpoczyna grę.
+action.shipPlacement.random = Losowo
+action.shipPlacement.random.desc = Losowo rozmieszcza statki gracza na planszy.
+action.shipPlacement.clear = Wyczyść
+action.shipPlacement.clear.desc = Usuwa wszystkie statki z planszy.
+
+settingsWindow.title = Ustawienia
+settings.boardWidth = Szerokość planszy
+settings.boardHeight = Wysokość planszy
+settings.difficulty = Poziom trudności
+settings.shipsShape = Kształt statków
+settings.shipsShapeCheckbox = Statki tylko jako pionowe / poziome linie
+settings.saveAsDefault = Zapisz, jako ustawienia domyślne.
+
+action.settings.save = Zapisz
+action.settings.save.desc = Zapisuje ustawienia.
+action.settings.cancel = Anuluj
+action.settings.cancel.desc =
+
+settings.shipList.title = Lista statków
+action.settings.shipList.add = Dodaj
+action.settings.shipList.add.desc = Dodaj nowy statek
+action.settings.shipList.delete = Usuń
+action.settings.shipList.delete.desc = Usuwa zaznaczone statki
+action.settings.shipList.increase = Zwiększ
+action.settings.shipList.increase.desc = Zwiększa Size zaznaczonych statków
+action.settings.shipList.decrease = Zmniejsz
+action.settings.shipList.decrease.desc = Zmniejsza Size zaznaczonych statków
+
+gameStatus.Player = Gracz
+gameStatus.AI = Komputer
+gameStatus.points = Punkty
+gameStatus.shipStatus1 = Nieuszkodzone
+gameStatus.shipStatus2 = Niezatopione
+gameStatus.fleet = Flota
+
+shipName.size1 = Korweta
+shipName.size1.plural = Korwet
+shipName.size2 = Fregata
+shipName.size2.plural = Fregat
+shipName.size3 = Niszczyciel
+shipName.size3.plural = Niszczycieli
+shipName.size4 = Pancernik
+shipName.size4.plural = Pancerników
+shipName.size5 = Lotniskowiec
+shipName.size5.plural = Lotniskowców
+
+message.hit1 = trafiony!
+message.hit2 = trafiony, zatopiony!
+message.win = Zwycięstwo! Gratulacje.
+message.lose = Przegrana. Spróbuj jeszcze raz.
+
+errorMsg.windowTitle = Błąd
+errorMsg.shipPlacement.invalidShipPlacement = Nieprawidłowe rozmieszczenie statków
+errorMsg.shipPlacement.randomShipPlacementFail = Wystąpił błąd podczas próby losowego rozmieszczenia statków.
+errorMsg.shipPlacement.computerShipPlacementError = Wystąpił błąd podczas próby rozmieszczenia statków. Spróbować ponownie?
+errorMsg.shipPlacement.computerShipPlacementFail = Rozmieszczenie statków komputera zakończone niepowodzeniem.\nJeśli błąd się powtarza, zwiększ Size planszy, lub zmniejsz wielkość i / lub ilość statków.
+errorMsg.settings.invalidBoardSize = Nieprawidłowy Size planszy.
+errorMsg.settings.noShip = Nie zdefiniowano żadnego statku.
+errorMsg.settings.shipList.noShipSelected = Nie zaznaczono żadnego statku.
+errorMsg.settings.saveDefault = Błąd podczas zapisu domyślnej konfiguracji.

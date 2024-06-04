@@ -164,6 +164,42 @@ public class JPanelShipListSettings
 				}
 			}
 		}
+        /**
+         * Private class responsible for changing a ship's name.
+         */
+        
+        private class ActionRename
+                extends AbstractAction
+                {
+                public ActionRename()
+                    {
+                        putValue(Action.SHORT_DESCRIPTION, JFrameGameWindowSettings.LANG.getProperty("action.settings.shipList.rename.desc"));
+			URL oImgUrl = getClass().getResource("/pl/vgtworld/games/ship/img/button-rename.png");
+                        if (oImgUrl == null)
+				putValue(Action.NAME, JFrameGameWindowSettings.LANG.getProperty("action.settings.shipList.rename"));
+			else
+				{
+				Image oImg = Toolkit.getDefaultToolkit().getImage(oImgUrl);
+				putValue(Action.SMALL_ICON, new ImageIcon(oImg));
+				}
+                    }
+                public void actionPerformed(ActionEvent oEvent)
+                    {
+                        int[] aChecked = oShipList.getSelectedIndices();
+			if (aChecked.length == 0)
+				JOptionPane.showMessageDialog(JPanelShipListSettings.this, JFrameGameWindowSettings.LANG.getProperty("errorMsg.settings.shipList.noShipSelected"));
+			try
+				{
+				for (int iSelected: aChecked)
+					oShipList.renameShip(iSelected);
+				}
+			catch (ParameterException e)
+				{
+				throw new DeveloperException(e);
+				}
+                    }
+                }
+        
 	/**
 	 * The default constructor.
 	 */
@@ -176,11 +212,12 @@ public class JPanelShipListSettings
 		JScrollPane oShipListScroll = new JScrollPane(oShipList);
 		// button panel
 		JPanel oButtonsPanel = new JPanel();
-		oButtonsPanel.setLayout(new GridLayout(1, 4));
+		oButtonsPanel.setLayout(new GridLayout(1, 5));
 		oButtonsPanel.add(new JButton(new ActionAdd()));
 		oButtonsPanel.add(new JButton(new ActionRemove()));
 		oButtonsPanel.add(new JButton(new ActionEnlarge()));
 		oButtonsPanel.add(new JButton(new ActionZoomOut()));
+                oButtonsPanel.add(new JButton(new ActionRename()));
 		
 		add(oShipListLabel, BorderLayout.PAGE_START);
 		add(oShipListScroll, BorderLayout.CENTER);
