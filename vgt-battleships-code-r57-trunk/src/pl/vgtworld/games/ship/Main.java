@@ -26,8 +26,7 @@ public class Main
 					{
 					Settings oSettings = new Settings();
 					GameStatus oGameStatus = new GameStatus();
-                    JFrameGameWindowSettings oWindow = new JFrameGameWindowSettings(oGameStatus, oSettings, 800, 600);
-                    oWindow.SettingGameWindow();
+                                        JFrameGameWindowSettings oWindow = new JFrameGameWindowSettings(oGameStatus, oSettings, 800, 600);
 					oWindow.setVisible(true);
                                        
 					}
