@@ -99,7 +99,6 @@ public class JComponentGameStatus
 		//font
 		oPlayerLabel.setFont(oFontLabels);
 		oComputerLabel.setFont(oFontLabels);
-		//oLabelScore.setFont(oFontLabels);
 		oFleetLabel.setFont(oFontLabels);
 		oPlayerPoints.setFont(oFontValues);
 		oComputerPoints.setFont(oFontValues);
@@ -108,11 +107,8 @@ public class JComponentGameStatus
 		oPointsPanel.setOpaque(false);
 		oPointsPanel.setLayout(new GridLayout(3, 2));
 		oPointsPanel.add(new JLabel());
-		//oPointsPanel.add(oLabelScore);
 		oPointsPanel.add(oPlayerLabel);
-		//oPointsPanel.add(oPlayerPoints);
 		oPointsPanel.add(oComputerLabel);
-		//oPointsPanel.add(oComputerPoints);
 		
 		try
 			{

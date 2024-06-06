@@ -6,6 +6,8 @@ menu.help = Help
 
 action.newGame = New Game
 action.newGame.desc = Starts new game.
+action.multi = Multiplayer
+action.multi.desc = Starts new multiplayer game.
 action.settings = Settings
 action.settings.desc = Allows to change size of board, number and size of ships and difficulty level.
 action.exit = Close

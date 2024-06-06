@@ -86,10 +86,10 @@ public class JPanelMarkingShips
 			for (int i = oShips.getMaxShipSize(); i >= 1; --i)
 				if (oShips.getNumberOfShips(i) != oSettings.getNumberOfShips(i))
 					bOK = false;
-			if (oShips.verifyApplication(oSettings.getStraightLines()) == false)
+			if (!oShips.verifyApplication(oSettings.getStraightLines()))
 				bOK = false;
 			//commit
-			if (bOK == false)
+			if (!bOK)
 				{
 				JOptionPane.showMessageDialog(JPanelMarkingShips.this, JFrameGameWindowSettings.LANG.getProperty("errorMsg.shipPlacement.invalidShipPlacement"));
 				oShips = null;
@@ -149,7 +149,7 @@ public class JPanelMarkingShips
 				for (int iSize: aShips)
 					oContainer.addAShip(iSize);
 				ShipPositioner oPositioner = new ShipPositioner();
-				if (oPositioner.shipSpaces(oContainer, oSettings.getStraightLines()) == false)
+				if (!oPositioner.shipSpaces(oContainer, oSettings.getStraightLines()))
 					JOptionPane.showMessageDialog(JPanelMarkingShips.this, JFrameGameWindowSettings.LANG.getProperty("errorMsg.shipPlacement.randomShipPlacementFail"));
 				}
 			catch (ParameterException e)

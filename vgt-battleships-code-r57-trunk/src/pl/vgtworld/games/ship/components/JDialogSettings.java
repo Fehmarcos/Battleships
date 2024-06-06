@@ -167,7 +167,7 @@ public class JDialogSettings
 				oSettings.setBoardWidth(iBoardWidth);
 				oSettings.setBoardHeight(iBoardHeight);
 				oSettings.setDifficultyLevel(oDifficultyLevel.getValue());
-				if (oShipsStraightLines.isSelected() == true)
+				if (oShipsStraightLines.isSelected())
 					oSettings.setStraightLines(true);
 				else
 					oSettings.setStraightLines(false);
@@ -216,7 +216,7 @@ public class JDialogSettings
 		//shape of ships
 		JLabel oShipsStraightLinesLabel = new JLabel(JFrameGameWindowSettings.LANG.getProperty("settings.shipsShape"), JLabel.CENTER);
 		oShipsStraightLines = new JCheckBox(JFrameGameWindowSettings.LANG.getProperty("settings.shipsShapeCheckbox"));
-		if (oSettings.getStraightLines() == true)
+		if (oSettings.getStraightLines())
 			oShipsStraightLines.setSelected(true);
 		//ship list
 		oShipList = new JPanelShipListSettings();
@@ -327,7 +327,7 @@ public class JDialogSettings
 		oBoardHeight.setText(String.valueOf(oSettings.getBoardHeight()));
 		oBoardHeightSlider.setValue(oSettings.getBoardHeight());
 		oDifficultyLevel.setValue(oSettings.getDifficultyLevel());
-		if (oSettings.getStraightLines() == true)
+		if (oSettings.getStraightLines())
 			oShipsStraightLines.setSelected(true);
 		else
 			oShipsStraightLines.setSelected(false);
