@@ -6,12 +6,14 @@ menu.help = Help
 
 action.newGame = New Game
 action.newGame.desc = Starts new game.
+action.newGame.restart.question = Want to start a new game?
 action.settings = Settings
 action.settings.desc = Allows to change size of board, number and size of ships and difficulty level.
 action.exit = Close
 action.exit.desc = Shut down game.
 action.about = About
 action.about.desc = Info about author.
+action.selectedOption = Select an option
 
 shipPlacement.list.header = Put on board ships specified below:
 shipPlacement.list.prefix = Number of
