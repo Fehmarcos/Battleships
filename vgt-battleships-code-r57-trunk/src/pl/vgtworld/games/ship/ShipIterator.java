@@ -172,6 +172,11 @@ public class ShipIterator
 		{
 		return getNumberOfShips() - getNumberOfShipsHit() - getNumberOfSunkenShips();
 		}
+		
+	public int getNumberOfDestroyedShips()
+	{
+		return getNumberOfSunkenShips() - getNumberOfShipsHit();
+	}
 	/**
 	 * Returns the Size of the largest ship currently stored in the container.
 	 */

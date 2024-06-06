@@ -187,6 +187,26 @@ public class JFrameGameWindowSettings
 			System.exit(0);
 			}
 		}
+	
+	public void RestartNewGame() 
+	{
+		if (oGameStatus.getGameOver()) 
+		{
+			if ((JOptionPane.showConfirmDialog(
+					JFrameGameWindowSettings.this, 
+					JFrameGameWindowSettings.
+										LANG.
+										getProperty("action.selectedOption"), 
+					JFrameGameWindowSettings.
+										LANG.
+										getProperty("action.newGame.restart.question"), 
+					JOptionPane.YES_NO_OPTION)) == (JOptionPane.YES_OPTION))
+			{
+				ActionNewGame oActionNewGame = new ActionNewGame();
+				oActionNewGame.actionPerformed(null);
+			}
+		}
+	}
 	/**
 	 * Private class that handles the display of the author info window.
 	 */
@@ -264,11 +284,13 @@ public class JFrameGameWindowSettings
 					JComponentBoard oBoardComponent = (JComponentBoard)oBoardPanelContainer.getComponent(1);
 					oBoardComponent.activateHighlight(oClickedField);
 					//support for checking if game over
-					if (bHit == true && oComputerShips.getNumberOfShips() == oComputerShips.getNumberOfUndamagedShips())
+					//if (bHit == true && oComputerShips.getNumberOfShips() == oComputerShips.getNumberOfUndamagedShips())
+					if (bHit == true && oComputerShips.getNumberOfShips() == oComputerShips.getNumberOfDestroyedShips())
 						{
 						oGameStatus.playerVictory();
 						oGameStatusComponent.updateData();
 						JOptionPane.showMessageDialog(JFrameGameWindowSettings.this, LANG.getProperty("message.win"));
+						RestartNewGame();
 						return;
 						}
 					else if (bHit == true)
@@ -310,7 +332,8 @@ public class JFrameGameWindowSettings
 			JComponentBoard oBoardComponent = (JComponentBoard)oBoardPanelContainer.getComponent(0);
 			oBoardComponent.activateHighlight(oPlayerShips.getLastShot());
 			// handle checking if game over
-			if (bHit == true && oPlayerShips.getNumberOfShips() == oPlayerShips.getNumberOfUndamagedShips())
+			//if (bHit == true && oPlayerShips.getNumberOfShips() == oPlayerShips.getNumberOfUndamagedShips())
+			if (bHit == true && oPlayerShips.getNumberOfShips() == oPlayerShips.getNumberOfDestroyedShips())
 				{
 				oGameStatus.computerVictory();
 				oGameStatusComponent.updateData();
@@ -324,6 +347,7 @@ public class JFrameGameWindowSettings
 					}
 				oBoardPanelContainer.repaint();
 				JOptionPane.showMessageDialog(JFrameGameWindowSettings.this, LANG.getProperty("message.lose"));
+				RestartNewGame();
 				return;
 				}
 			else if (bHit == true)
@@ -357,17 +381,41 @@ public class JFrameGameWindowSettings
 	 * @param iWidth Width Window games w pixel.
 	 * @param iHeight Height okna games w pixel.
 	 */
-	public JFrameGameWindowSettings(GameStatus oGameStatus, Settings oSettings, int iWidth, int iHeight)
-		{
+	
+	private void setNextLineFrom_sVersion() 
+	{
 		InputStream oFile = getClass().getResourceAsStream("/wersja.txt");
 		if (oFile != null)
 			{
 			Scanner oVer = new Scanner(oFile);
+			oVer.close();
 			sVersion = oVer.nextLine();
 			}
 		else
 			sVersion = null;
-		
+	}
+	
+	private void loadBufferedLangStream(Properties oProperty)
+	{
+		try 
+		{
+		InputStream oLangStream = getClass().getResourceAsStream("/pl/vgtworld/games/ship/lang/" + Locale.getDefault().getLanguage() + "_" + Locale.getDefault().getCountry() + ".lang");
+		LANG = new Properties(oProperty);
+		if (oLangStream != null)
+			{
+			BufferedReader oBuffereLangStream = new BufferedReader(new InputStreamReader(oLangStream, "UTF-8"));
+			LANG.load(oBuffereLangStream);			
+			}
+		}
+		catch (IOException e)
+		{
+		System.err.println("error reading file");
+		JOptionPane.showMessageDialog(null, "error reading file", "Error", JOptionPane.ERROR_MESSAGE);
+		System.exit(1);
+		}
+	}
+	
+	private void setDefaultLang() {
 		Properties oDefaultLang = new Properties();
 		try
 			{
@@ -379,13 +427,7 @@ public class JFrameGameWindowSettings
 				System.exit(1);
 				}
 			oDefaultLang.load(oDefaultLangStream);
-			InputStream oLangStream = getClass().getResourceAsStream("/pl/vgtworld/games/ship/lang/" + Locale.getDefault().getLanguage() + "_" + Locale.getDefault().getCountry() + ".lang");
-			LANG = new Properties(oDefaultLang);
-			if (oLangStream != null)
-				{
-				BufferedReader oBuffereLangStream = new BufferedReader(new InputStreamReader(oLangStream, "UTF-8"));
-				LANG.load(oBuffereLangStream);
-				}
+			loadBufferedLangStream(oDefaultLang);
 			}
 		catch (IOException e)
 			{
@@ -393,18 +435,19 @@ public class JFrameGameWindowSettings
 			JOptionPane.showMessageDialog(null, "error reading file", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
 			}
-
-		//setMinimumSize(new Dimension(MIN_WIDTH, MIN_Height));
-		
+	}
+	
+	private void setGameWindowSettings() {
 		setTitle(JFrameGameWindowSettings.LANG.getProperty("mainWindow.title"));
 		//setSize(iWidth, iHeight);
-                setExtendedState(JFrameGameWindowSettings.MAXIMIZED_BOTH);
-                setUndecorated(true);
+        setExtendedState(JFrameGameWindowSettings.MAXIMIZED_BOTH);
+        setUndecorated(true);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		this.oGameStatus = oGameStatus;
-		this.oSettings = oSettings;
+	}
+	
+	private void setWindowDialog() {
 		oWindowSettings = new JDialogSettings(this, oSettings);
 		oWindowSettings.setLocationRelativeTo(this);
 		oWindowAbout = new JDialogAbout(this, JFrameGameWindowSettings.LANG.getProperty("mainWindow.title"));
@@ -413,23 +456,24 @@ public class JFrameGameWindowSettings
 			oWindowAbout.setVersion(sVersion);
 			oWindowAbout.rebuild();
 			}
-		
+	}
+	
+	private void setPanelContainer() {
 		//panel with player boards
 		oBoardPanelContainer = new JPanel();
 		oBoardPanelContainer.setLayout(new GridLayout());
-		if (oGameStatus.getGameLaunched() == true && oGameStatus.getShipsArranged() == true)
+		if (this.oGameStatus.getGameLaunched() == true && this.oGameStatus.getShipsArranged() == true)
 			add(oBoardPanelContainer, BorderLayout.CENTER);
-		
+	}
+	
+	private void setShipSelection() {
 		//panel with the board for selecting ships after the start of the game
-		oShipSelectionPanel = new JPanelMarkingShips(oSettings, this);
-		if (oGameStatus.getGameLaunched() == true && oGameStatus.getShipsArranged() == false)
+		oShipSelectionPanel = new JPanelMarkingShips(this.oSettings, this);
+		if (this.oGameStatus.getGameLaunched() == true && this.oGameStatus.getShipsArranged() == false)
 			add(oShipSelectionPanel, BorderLayout.CENTER);
-		
-		//action objects
-		ActionNewGame oActionNewGame = new ActionNewGame();
-		ActionFinish oActionFinish = new ActionFinish();
-		ActionSettings oActionSettings = new ActionSettings();
-		
+	}
+	
+	private void addButtonsPanel(ActionNewGame oActionNewGame, ActionFinish oActionFinish, ActionSettings oActionSettings) {
 		//panel replacing the board before the game starts
 		oButtonsPanel = new JPanel();
 		oButtonsPanel.setBackground(Color.BLACK);
@@ -440,49 +484,102 @@ public class JFrameGameWindowSettings
 		oButtonsPanel.add(oButtonNewGame);
 		oButtonsPanel.add(oButtonSettings);
 		oButtonsPanel.add(oButtonFinish);
-		if (oGameStatus.getGameLaunched() == false)
+		if (this.oGameStatus.getGameLaunched() == false)
 			add(oButtonsPanel, BorderLayout.CENTER);
-		
+	}
+	
+	private void addEventComponent() {
 		//event draw area
 		oEventsComponent = new JComponentEvents();
 		add(oEventsComponent, BorderLayout.PAGE_START);
-		
+	}
+	
+	private void addGameStatusComponent() {
 		//game status drawing area
 		oGameStatusComponent = new JComponentGameStatus(this.oGameStatus);
 		add(oGameStatusComponent, BorderLayout.PAGE_END);
-		
-		//menu
-		oMenu = new JMenuBar();
-		setJMenuBar(oMenu);
-		
+	}
+	
+	private JMenu getShipsMenu(ActionNewGame oActionNewGame, ActionFinish oActionFinish) {
 		//menu "ships"
 		JMenu oShipsMenu = new JMenu(JFrameGameWindowSettings.LANG.getProperty("menu.game"));
 		JMenuItem oShipsMenuNew = new JMenuItem(oActionNewGame);
 		JMenuItem oShipsMenuClose = new JMenuItem(oActionFinish);
 		oShipsMenu.add(oShipsMenuNew);
 		oShipsMenu.add(oShipsMenuClose);
-		oMenu.add(oShipsMenu);
-
+		return oShipsMenu;
+	}
+	
+	private JMenu getOptionsMenu(ActionSettings oActionSettings) {
 		//menu "options"
 		JMenu oOptionsMenu = new JMenu(JFrameGameWindowSettings.LANG.getProperty("menu.options"));
 		JMenuItem oOptionsMenuConf = new JMenuItem(oActionSettings);
 		oOptionsMenu.add(oOptionsMenuConf);
-		oMenu.add(oOptionsMenu);
-		
+		return oOptionsMenu;
+	}
+	
+	private JMenu getHelpMenu() {
 		//menu "help"
 		JMenu oHelpMenu = new JMenu(JFrameGameWindowSettings.LANG.getProperty("menu.help"));
 		JMenuItem oHelpMenuAbout = new JMenuItem(new ActionAbout());
 		oHelpMenu.add(oHelpMenuAbout);
-		oMenu.add(oHelpMenu);
-		
+		return oHelpMenu;
+	}
+	
+	private void setMapEnter() {
 		//map enter
 		InputMap oIMap = oButtonsPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		oIMap.put(KeyStroke.getKeyStroke("F2"), "action.NewGame");
-		
+	}
+	
+	private void setMapShare(ActionNewGame oActionNewGame) {
 		//map share
 		ActionMap oAMap = oButtonsPanel.getActionMap();
 		oAMap.put("action.NewGame", oActionNewGame);
+	}
+	
+	public void setMenuBar(ActionNewGame oActionNewGame, ActionFinish oActionFinish, ActionSettings oActionSettings) {
+		oMenu = new JMenuBar();
+		setJMenuBar(oMenu);
+				
+		oMenu.add(getShipsMenu(oActionNewGame, oActionFinish));		
+		oMenu.add(getOptionsMenu(oActionSettings));		
+		oMenu.add(getHelpMenu());
+	}
+	
+	public void setMap(ActionNewGame oActionNewGame) {
+		setMapEnter();
+		setMapShare(oActionNewGame);
+	}
+	
+	public void setActionsAndComponents() {
+		ActionNewGame oActionNewGame = new ActionNewGame();
+		ActionFinish oActionFinish = new ActionFinish();
+		ActionSettings oActionSettings = new ActionSettings();
+		
+		addButtonsPanel(oActionNewGame, oActionFinish, oActionSettings);		
+		addEventComponent();
+		addGameStatusComponent();		
+		setMenuBar(oActionNewGame, oActionFinish, oActionSettings);		
+		setMap(oActionNewGame);	
+	}
+	
+	public JFrameGameWindowSettings(GameStatus oGameStatus, Settings oSettings, int iWidth, int iHeight)
+		{
+		this.oGameStatus = oGameStatus;
+		this.oSettings = oSettings;
 		}
+	
+	public void SettingGameWindow() {
+		setNextLineFrom_sVersion();
+		setDefaultLang();	
+		setGameWindowSettings();		
+		setWindowDialog();		
+		setPanelContainer();
+		setShipSelection();		
+		setActionsAndComponents();			
+	}
+
 	/**
 	 * The method adds charts provided in the charts parameter to the container.
 	 * 

@@ -6,6 +6,7 @@ menu.help = Ajuda
 
 action.newGame = Novo Jogo
 action.newGame.desc = Começar novo jogo.
+action.newGame.restart.question = Deseja iniciar um novo jogo?
 action.multi = Multi Jogador
 action.multi.desc = Começar um novo jogo no modo Multi Jogador.
 action.settings = Configurações
@@ -14,6 +15,7 @@ action.exit = Fechar
 action.exit.desc = Fechar o Jogo.
 action.about = Sobre
 action.about.desc = Informações sobre os autores.
+action.selectedOption = Selecione uma opção
 
 shipPlacement.list.header = Insere os navios na seguinte ordem abaixo:
 shipPlacement.list.prefix = Numero de
