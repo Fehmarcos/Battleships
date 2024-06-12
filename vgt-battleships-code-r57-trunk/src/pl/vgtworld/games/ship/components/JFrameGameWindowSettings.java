@@ -2,7 +2,6 @@ package pl.vgtworld.games.ship.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,15 +31,15 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import pl.vgtworld.components.about.JDialogAbout;
-import pl.vgtworld.exceptions.ParameterException;
 import pl.vgtworld.exceptions.DeveloperException;
+import pl.vgtworld.exceptions.ParameterException;
 import pl.vgtworld.games.ship.Board;
-import pl.vgtworld.games.ship.FieldTypeBoard;
 import pl.vgtworld.games.ship.DrawingCoordinatesOnBoard;
-import pl.vgtworld.games.ship.ShipIterator;
-import pl.vgtworld.games.ship.ShipPositioner;
+import pl.vgtworld.games.ship.FieldTypeBoard;
 import pl.vgtworld.games.ship.GameStatus;
 import pl.vgtworld.games.ship.Settings;
+import pl.vgtworld.games.ship.ShipIterator;
+import pl.vgtworld.games.ship.ShipPositioner;
 import pl.vgtworld.games.ship.ai.Ai;
 import pl.vgtworld.games.ship.ai.AiFactory;
 import pl.vgtworld.tools.Position;
@@ -146,6 +145,28 @@ public class JFrameGameWindowSettings
 		public void actionPerformed(ActionEvent event)
 			{
 			oGameStatus.startNewGame();
+			oButtonsPanel.setVisible(false);
+			oBoardPanelContainer.setVisible(false);
+			oShipSelectionPanel.setVisible(true);
+			add(oShipSelectionPanel, BorderLayout.CENTER);
+			oShipSelectionPanel.ClearBoard();
+			repaint();
+			}
+		}
+	/**
+	 * A private class containing action handlers to start a new multiplayer game.
+	 */
+	private class ActionNewMultiGame
+		extends AbstractAction
+		{
+		public ActionNewMultiGame()
+			{
+			putValue(Action.NAME, JFrameGameWindowSettings.LANG.getProperty("action.multi"));
+			putValue(Action.SHORT_DESCRIPTION, JFrameGameWindowSettings.LANG.getProperty("action.multi.desc"));
+			}
+		public void actionPerformed(ActionEvent event)
+			{
+			oGameStatus.startNewMultiGame();
 			oButtonsPanel.setVisible(false);
 			oBoardPanelContainer.setVisible(false);
 			oShipSelectionPanel.setVisible(true);
@@ -473,15 +494,17 @@ public class JFrameGameWindowSettings
 			add(oShipSelectionPanel, BorderLayout.CENTER);
 	}
 	
-	private void addButtonsPanel(ActionNewGame oActionNewGame, ActionFinish oActionFinish, ActionSettings oActionSettings) {
+	private void addButtonsPanel(ActionNewGame oActionNewGame, ActionFinish oActionFinish, ActionSettings oActionSettings,ActionNewMultiGame oActionNewMultiGame) {
 		//panel replacing the board before the game starts
 		oButtonsPanel = new JPanel();
 		oButtonsPanel.setBackground(Color.BLACK);
 		//oButtonsPanel.setLayout(new GridLayout());
 		JButton oButtonNewGame = new JButton(oActionNewGame);
+		JButton oButtonNewMultiGame = new JButton(oActionNewMultiGame);
 		JButton oButtonSettings = new JButton(oActionSettings);
 		JButton oButtonFinish = new JButton(oActionFinish);
 		oButtonsPanel.add(oButtonNewGame);
+		oButtonsPanel.add(oButtonNewMultiGame);
 		oButtonsPanel.add(oButtonSettings);
 		oButtonsPanel.add(oButtonFinish);
 		if (this.oGameStatus.getGameLaunched() == false)
@@ -556,8 +579,9 @@ public class JFrameGameWindowSettings
 		ActionNewGame oActionNewGame = new ActionNewGame();
 		ActionFinish oActionFinish = new ActionFinish();
 		ActionSettings oActionSettings = new ActionSettings();
+		ActionNewMultiGame oActionNewMultiGame = new ActionNewMultiGame();
 		
-		addButtonsPanel(oActionNewGame, oActionFinish, oActionSettings);		
+		addButtonsPanel(oActionNewGame, oActionFinish, oActionSettings, oActionNewMultiGame);		
 		addEventComponent();
 		addGameStatusComponent();		
 		setMenuBar(oActionNewGame, oActionFinish, oActionSettings);		

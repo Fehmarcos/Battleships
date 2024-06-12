@@ -11,15 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import pl.vgtworld.exceptions.ParameterException;
 import pl.vgtworld.exceptions.DeveloperException;
+import pl.vgtworld.exceptions.ParameterException;
 import pl.vgtworld.games.ship.Board;
-import pl.vgtworld.games.ship.FieldTypeBoard;
 import pl.vgtworld.games.ship.DrawingCoordinatesOnBoard;
-import pl.vgtworld.games.ship.ShipIterator;
-import pl.vgtworld.games.ship.ShipGenerator;
-import pl.vgtworld.games.ship.ShipPositioner;
+import pl.vgtworld.games.ship.FieldTypeBoard;
 import pl.vgtworld.games.ship.Settings;
+import pl.vgtworld.games.ship.ShipGenerator;
+import pl.vgtworld.games.ship.ShipIterator;
+import pl.vgtworld.games.ship.ShipPositioner;
 import pl.vgtworld.tools.Position;
 
 /**
@@ -244,6 +244,7 @@ public class JPanelMarkingShips
 		oButtonContainer.add(oButtonZatwierdz);
 		oButtonContainer.add(oButtonLosuj);
 		oButtonContainer.add(oButtonClear);
+		
 		oPanelRight.add(oButtonContainer, BorderLayout.PAGE_END);
 		oPanelRight.add(oShipListInfoScroll, BorderLayout.CENTER);
 		add(oPanelRight);

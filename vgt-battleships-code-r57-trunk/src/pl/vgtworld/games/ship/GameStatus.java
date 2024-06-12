@@ -21,6 +21,10 @@ public class GameStatus
 	 */
 	private boolean bGameLaunched;
 	/**
+	 * Determines whether the game is multiplayer.
+	 */
+	private boolean bMultiplayerGame;
+	/**
 	 * Determines if the game has ended.
 	 */
 	private boolean bGameIsOver;
@@ -132,6 +136,15 @@ public class GameStatus
 		{
 		resetSettings();
 		bGameLaunched = true;
+		}
+	/**
+	 * Method called when starting a new multiplayer game.
+	 * Sets the properties of an object to the required values.
+	 */
+	public void startNewMultiGame()
+		{
+		startNewGame();
+		bMultiplayerGame = true;
 		}
 	/**
 	 * Method called when the player wins.
