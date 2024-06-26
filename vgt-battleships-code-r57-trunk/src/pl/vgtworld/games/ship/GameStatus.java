@@ -161,7 +161,7 @@ public class GameStatus
 	 */
 	public void approveTheLocationOfShips()
 		{
-		if (bGameLaunched != true || bShipsArranged != false || bGameIsOver != false)
+		if (!bGameLaunched || bShipsArranged || bGameIsOver)
 			throw new DeveloperException();
 		bShipsArranged = true;
 		}

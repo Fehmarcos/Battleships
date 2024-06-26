@@ -105,11 +105,11 @@ public class ShipVerification
 			aCorrect[0] = true;
 			boolean bChanges = true;
 			// loop running until there are any changes to the number of valid fields
-			while (bChanges == true)
+			while (bChanges)
 				{
 				bChanges = false;
 				for (int i = 0; i < oShip.getSize(); ++i)
-					if (aCorrect[i] == true)
+					if (aCorrect[i])
 						{
 						Position oValidField = oShip.getField(i+1);
 						for (int j = -1; j <= 1; ++j)
@@ -120,7 +120,7 @@ public class ShipVerification
 									)
 									continue;
 								int iNumberFields = oShip.getNumberPosition(oValidField.getX() + j, oValidField.getY() + k);
-								if (iNumberFields > 0 && aCorrect[iNumberFields - 1] == false)
+								if (iNumberFields > 0 && !aCorrect[iNumberFields - 1])
 									{
 									bChanges = true;
 									++iQuantityValid;
@@ -133,7 +133,7 @@ public class ShipVerification
 			if (iQuantityValid == oShip.getSize())
 				{
 				// further checking if position is making lines if required
-				if (bStraightLines == true)
+				if (bStraightLines)
 					{
 					int iX = -1;
 					int iY = -1;
@@ -150,7 +150,7 @@ public class ShipVerification
 						else if (iY != oShip.getField(i).getY())
 							bVertical = false;
 						}
-					if (bLevel == true || bVertical == true)
+					if (bLevel || bVertical)
 						return true;
 					else
 						return false;

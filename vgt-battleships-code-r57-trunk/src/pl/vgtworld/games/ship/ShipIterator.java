@@ -142,7 +142,7 @@ public class ShipIterator
 		int iHitNotSunk = 0;
 		for (Ship oShip: aShips)
 			{
-			if (oShip.getHits() == true && oShip.getSunk() == false)
+			if (oShip.getHits() && !oShip.getSunk())
 				++iHitNotSunk;
 			}
 		return iHitNotSunk;
@@ -157,7 +157,7 @@ public class ShipIterator
 		int iSunken = 0;
 		for (Ship oShip: aShips)
 			{
-			if (oShip.getSunk() == true)
+			if (oShip.getSunk())
 				++iSunken;
 			}
 		return iSunken;
@@ -280,7 +280,7 @@ public class ShipIterator
 		oLastShot.setX(iX);
 		oLastShot.setY(iY);
 		for (int i = 0; i < iNumberOfShips; ++i)
-			if (aShips[i].shot(iX, iY) == true)
+			if (aShips[i].shot(iX, iY))
 				return true;
 		return false;
 		}
@@ -352,13 +352,13 @@ public class ShipIterator
 				ShipVerification oVerifier = new ShipVerification();
 				oVerifier.importShip(oShip);
 				//checking if all positions are on the board
-				if (oVerifier.spacesOnBoard() == false)
+				if (!oVerifier.spacesOnBoard())
 					return false;
 				//checking if all positions create a uniform structure (they touch each other)
-				if (oVerifier.fieldsConnected(bStraightLines) == false)
+				if (!oVerifier.fieldsConnected(bStraightLines))
 					return false;
 				//checking that the ship is not touching its side or corner with another ship
-				if (oVerifier.NoNeighbors() == false)
+				if (!oVerifier.NoNeighbors())
 					return false;
 				}
 			}

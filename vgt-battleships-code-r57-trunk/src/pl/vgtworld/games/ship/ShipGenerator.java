@@ -132,7 +132,7 @@ public class ShipGenerator
 			aField[ iSize++ ] =  getField(0);
 			// loop to take subsequent positions until some neighbors are found
 			boolean bNewNeighbor = true;
-			while (bNewNeighbor == true)
+			while (bNewNeighbor)
 				{
 				bNewNeighbor = false;
 				for (int i = 0; i < iSize; ++i)

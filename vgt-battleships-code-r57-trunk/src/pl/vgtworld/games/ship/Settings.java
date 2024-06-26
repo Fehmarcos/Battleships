@@ -264,7 +264,7 @@ public class Settings
 			oDefault.setProperty("plansza_Width", String.valueOf(iBoardWidth));
 			oDefault.setProperty("plansza_Height", String.valueOf(iBoardHeight));
 			oDefault.setProperty("poziom_trudnosci", String.valueOf(iDifficultyLevel));
-			if (bStraightLines == true)
+			if (bStraightLines)
 				oDefault.setProperty("proste_linie", "tak");
 			else
 				oDefault.setProperty("proste_linie", "nie");
