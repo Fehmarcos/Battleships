@@ -6,6 +6,7 @@ menu.help = Pomoc
 
 action.newGame = Nowa gra
 action.newGame.desc = Rozpoczyna nową grę.
+action.newGame.restart.question = Chcesz rozpocząć nową grę?
 action.multi = Tryb wieloosobowy
 action.multi.desc = Rozpoczyna nową grę wieloosobową.
 action.settings = Ustawienia
@@ -14,6 +15,7 @@ action.exit = Wyjście
 action.exit.desc = Zamyka aFileację.
 action.about = o programie
 action.about.desc = Informacje o autorze.
+action.selectedOption = Wybierz opcję
 
 shipPlacement.list.header = Umieść na planszy następujące statki:
 shipPlacement.list.prefix = Ilość
