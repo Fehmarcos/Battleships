@@ -7,13 +7,8 @@ import pl.vgtworld.exceptions.DeveloperException;
 import pl.vgtworld.tools.Position;
 
 /**
- * A aula trata da colocação aleatória de naves no tabuleiro. <br />
+ * Class that positions ships in random board places.
  *
- * <p>
- * atualizações: <br />
- * 1,1 <br />
- * - adicionado o parâmetro bStraightLines ao método {@link #shipSpaces (Ship Iterator, boolean)}. <br />
- * </p>
  * 
  * @author VGT
  * @version 1.1
@@ -21,11 +16,11 @@ import pl.vgtworld.tools.Position;
 public class ShipPositioner
 	{
 	/**
-	 * A container for which ships must be stowed on board.
+	 * A ship container storing a number of ships.
 	 */
 	private ShipIterator oShips;
 	/**
-	* Plate belonging to a particular vessel vessel.
+	* Board reference to a number of ships.
 	*/
 	private Board oBoard;
 	/**
@@ -49,23 +44,22 @@ public class ShipPositioner
 		return shipSpaces(oShips, false);
 		}
 	/**
-	 * Main method for initiating the procedure for placing ships on board. <br />
+	 * Main method for placing ships on board.
 	 *
-	 * Successful ship placement is not guaranteed. The less space on board and/or the more ships, the better the chances
-	 * an error when preparing ships. If staging is not feasible, the method returns FALSE
-	 * and all partial ship positions are reset. <br />
+	 * Successful ship placement is not guaranteed. The less space on board
+         * and/or the more ships, the more likely an error might happen.
+         * Returns FALSE if positioning ships is not possible, and all ships are reset.
 	 *
-	 * For standard game (board 10x10 and 10 ships with sizes 1 to 4)
-	 * Current ship placement efficiency is at 99.93% level. <br />
+	 * For a standard game (board 10x10 and 10 ships with sizes 1 to 4),
+	 * current ship placement efficiency is at 99.93% level.
 	 *
-	 *updates: <br />
 	 *
-	 * 1.1 - adding a second parameter.
-	 *
-	 * @param oShips Container with ships configured to be stowed on board.
-	 * @param bStraightLines Defines whether ships should be vertical/horizontal lines only.
-	 * @return Returns TRUE if the ships were correctly spooled, or FALSE if there is an error.
-	 * @throws ParameterException It throws an exception if the container contains no ships.
+	 * @param oShips Ship container, with ships to be deployed.
+	 * @param bStraightLines Whether ships should be in straight lines or not.
+	 * @return Returns TRUE if the ships were correctly arranged,
+         * or FALSE otherwise.
+	 * @throws ParameterException Throws an exception if the container
+         * has no ships.
 	 */
 	public boolean shipSpaces(ShipIterator oShips, boolean bStraightLines) throws ParameterException
 		{
@@ -115,9 +109,9 @@ public class ShipPositioner
 		return true;
 		}
 	/**
-	 * Loading of ship and board facilities to the local properties of the facility.
+	 * Loading of ship and board iterators.
 	 * 
-	 * @param oShips Ship container requiring ships to be placed on board.
+	 * @param oShips Ship container requiring ships to be placed on a board.
 	 */
 	private void importShips(ShipIterator oShips)
 		{
@@ -125,10 +119,12 @@ public class ShipPositioner
 		this.oBoard = oShips.getBoard();
 		}
 	/**
-	 * Randomly puts the position of the ship object passed on to the board.
+	 * Randomly puts the ship object's position on the board.
 	 * 
-	 * @param oShip Ship, whose position should be placed on the board.
-	@throws ShipPositionerException Throws an exception if the ship was not successfully placed on board.	 */
+	 * @param oShip Ship, to be placed on a board.
+         * @throws ShipPositionerException Throws an exception if the ship was not
+         * successfully placed on board.
+         */
 	private void placeShipsOnTheBoard(Ship oShip, boolean bStraightLines) throws ShipPositionerException
 		{
 		try
@@ -211,10 +207,10 @@ public class ShipPositioner
 			}
 		}
 	/**
-	* The method returns the co-ordinates of a randomly selected empty position on the board,
-	* which is suitable for starting a new ship (has no neighbors).
+	* Returns the coordinates of a randomly selected empty field on the board,
+	* suitable for a ship (has no neighbors).
 	*
-	* @return Returns a random blank field from board.
+	* @return Returns a random blank field from the board.
 	*/
 	private Position drawEmptyField() throws ShipPositionerException
 		{
@@ -262,12 +258,13 @@ public class ShipPositioner
 			}
 		}
 	/**
-	* The method checks if the field with the given coordinates has no ships in the vicinity.
+	* Checks if the field with the given coordinates has no ships around it.
 	*
-	* @param oField co-ordinates position to check.
-	* @param oShip If there is a donated ship facility, this is information
-	* that there may be a position of this ship and the candidate is still valid.
-	* @return Returns TRUE if the field has no unwanted neighbors, or false otherwise.
+	* @param oField Coordinates position to check.
+	* @param oShip If there is a neighbor, this could be another part of the
+        * same ship, thus still making it viable.
+	* @return Returns TRUE if the field has no unwanted neighbors,
+        * or FALSE otherwise.
 	*/
 	private boolean verifyCandidate(Position oField, Ship oShip)
 		{
@@ -295,10 +292,9 @@ public class ShipPositioner
 	}
 
 /**
- * An exception is thrown when an error occurs while placing the ship on the board. <br />
+ * Throws an exception when an error occurs while placing the ship on the board.
  *
- * Its occurrence informs the main positioning method that the deployment of ships is over
- * an error that cannot be resolved.
+ * This is a generalized error message for wrong ship placements.
  *
  * @author VGT
  * @version 1.0

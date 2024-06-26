@@ -36,7 +36,7 @@ public class JDialogSettings
 	/**
 	 * Settings window height.
 	 */
-	public static final int Height = 450; 
+	public static final int Height = 480; 
 	/**
 	 * Reference to the main game window.
 	 */

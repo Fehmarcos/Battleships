@@ -3,12 +3,12 @@ package pl.vgtworld.games.ship;
 import pl.vgtworld.exceptions.DeveloperException;
 
 /**
- * The class that stores information about the current game status.<br />
+ * Class that stores information about the current game's status.
  *
  * <p>
- * Updates:<br />
- * 1.1<br />
- * - adding methods {@link #getPlayerPoints ()} and {@link #getComputerPoints ()}.<br />
+ * Updates:
+ * 1.1
+ * - adding methods {@link #getPlayerPoints ()} and {@link #getComputerPoints ()}.
  * </p>
  * 
  * @author VGT
@@ -17,7 +17,7 @@ import pl.vgtworld.exceptions.DeveloperException;
 public class GameStatus
 	{
 	/**
-	 * Determines whether the game has started.
+	 * Determines if the game has started.
 	 */
 	private boolean bGameLaunched;
 	/**
@@ -25,12 +25,11 @@ public class GameStatus
 	 */
 	private boolean bGameIsOver;
 	/**
-	 * Determines whether the player's ship placement is completed and
-         * approved.
+	 * Determines if the player's ships are arranged correctly.
 	 */
 	private boolean bShipsArranged;
 	/**
-	 * Determines whether the player has won.
+	 * Determines if the player won.
 	 */
 	private boolean bWinTheplayer;
 	/**
@@ -38,11 +37,11 @@ public class GameStatus
 	 */
 	private boolean bWinTheComputer;
 	/**
-	 * The total number of player wins since the program was launched.
+	 * Number of player wins since the program's launch.
 	 */
 	private int iPlayerPoints;
 	/**
-	 * The total number of computer wins since the program was launched.
+	 * Number of computer wins since the program's launch.
 	 */
 	private int iComputerPoints;
 	/**
@@ -64,28 +63,26 @@ public class GameStatus
 		return bGameLaunched;
 		}
 	/**
-	 * Returns whether the game is over.
+	 * Returns whether the game ended.
 	 * 
-	 * @return Returns TRUE if the game is over (all player or computer 
-         * ships hit), or FALSE otherwise.
+	 * @return Returns TRUE if the game is over or FALSE otherwise.
 	 */
 	public boolean getGameOver()
 		{
 		return bGameIsOver;
 		}
 	/**
-	 * Returns information as to whether the player's ships have been 
-         * correctly placed on the board.
+	 * Returns whether the player's ships have been correctly arranged.
 	 * 
-	 * @return Returns TRUE if the player has placed the ships and they 
-         * have been verified, or FALSE otherwise.
+	 * @return Returns TRUE if the player has placed the ships accordingly,
+         * or FALSE otherwise.
 	 */
 	public boolean getShipsArranged()
 		{
 		return bShipsArranged;
 		}
 	/**
-	 * Returns whether the player has won the current game.
+	 * Returns whether the player has won a game.
 	 * 
 	 * @return Returns TRUE if the player has sunk all the computer's 
          * ships, FALSE otherwise.
@@ -95,7 +92,7 @@ public class GameStatus
 		return bWinTheplayer;
 		}
 	/**
-	 * Returns whether the computer has won the current game.
+	 * Returns whether the computer has won a game.
 	 * 
 	 * @return Returns TRUE if the computer has sunk all of the player's 
          * ships, FALSE otherwise.

@@ -66,7 +66,7 @@ public class JPanelMarkingShipsOnList
 			iQuantity = oSettings.getNumberOfShips(i);
 			if (iQuantity > 0)
 				{
-				int iShipClass = i > 5 ? 5 : i;
+				int iShipClass = i > 8 ? 8 : i;
 				if (i == 1)
 					sText = JFrameGameWindowSettings.LANG.getProperty("shipPlacement.list.prefix") + " " + JFrameGameWindowSettings.LANG.getProperty("shipName.size1.plural") + " (" + JFrameGameWindowSettings.LANG.getProperty("shipPlacement.list.size") +" 1): ";
 				else

@@ -3,6 +3,7 @@ package pl.vgtworld.games.ship.components;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import pl.vgtworld.exceptions.ParameterException;
 
 /**
@@ -53,7 +54,7 @@ public class JListShipListSettings
 		return aLista;
 		}
 	/**
-	 * Adds a ship with the given Sizeze to the list.
+	 * Adds a ship with the given Size to the list.
 	 * 
 	 * @param iSize The size of the added vessel.
 	 * @throws ParameterException Throws an exception if the supplied Size is less than from 1.
@@ -68,7 +69,7 @@ public class JListShipListSettings
 	/**
 	 * Changes the size of a ship with the given index.
 	 * 
-	 * @param iIndexShip index on the list (counted from 0).
+	 * @param iIndex index on the list (counted from 0).
 	 * @param iSize New Ship Size.
 	 * @throws ParameterException Throws an exception if index is outside the range of the existing ship list, or Size is less from 1.
 	 */
@@ -110,6 +111,24 @@ public class JListShipListSettings
 			oJListList.set(iIndex, JListShipListSettings.shipName(oListInt.get(iIndex)));
 			}
 		}
+        
+        /**
+         * Method used to change the name of a certain ship.
+         * 
+         * @param iIndex Ship index (counted from 0).
+         */
+        public void renameShip(int iIndex) throws ParameterException
+                {
+                    if (iIndex < 0 || iIndex >= oListInt.size())
+			throw new ParameterException("iIndex = " + iIndex);
+                    String newName = JOptionPane.showInputDialog(this, JFrameGameWindowSettings.LANG.getProperty("action.settings.shipList.rename.desc"));
+                    if (newName == null){
+                        oJListList.set(iIndex, JListShipListSettings.shipName(oListInt.get(iIndex)));
+                    } else {
+                        oJListList.set(iIndex, JListShipListSettings.newShipName(newName, oListInt.get(iIndex)));
+                    }
+                }
+        
 	/**
 	 * Removes a ship with the given index from the list.
 	 * 
@@ -141,7 +160,17 @@ public class JListShipListSettings
 		{
 		if (iSize < 1)
 			throw new ParameterException("iSize = " + iSize);
-		int iShipClass = iSize > 5 ? 5 : iSize;
+		int iShipClass = iSize > 8 ? 8 : iSize;
 		return JFrameGameWindowSettings.LANG.getProperty("shipName.size" + iShipClass) + " ( " + iSize + " )";
 		}
+        /**
+         * Method to give a new name to a ship
+         * 
+         * @param namer
+         * @return New ship name.
+         */
+        private static String newShipName(String namer, int iSize) throws ParameterException
+                {
+                return namer + " ( " + iSize + " )";
+                }
 	}

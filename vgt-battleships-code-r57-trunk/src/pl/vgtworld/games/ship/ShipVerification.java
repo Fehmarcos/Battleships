@@ -5,13 +5,13 @@ import pl.vgtworld.exceptions.DeveloperException;
 import pl.vgtworld.tools.Position;
 
 /**
- * A class that checks whether a ship meets various conditions
- * regarding its structure or placement on the board. <br />
+ * Class that checks whether a ship meets various conditions regarding its
+ * structure or board placement.
  *
  * <p>
- * updates: <br />
- * 1.1 <br />
- * - added bStraightLines parameter to {@link #fieldsConnected (boolean)} method. <br />
+ * updates:
+ * 1.1
+ * - added bStraightLines parameter to {@link #fieldsConnected (boolean)} method.
  * </p>
  *
  * @author VGT
@@ -20,12 +20,9 @@ import pl.vgtworld.tools.Position;
 public class ShipVerification
 	{
 	/**
-	 * Ship facility to be verified.
 	 */
 	private Ship oShip;
 	/**
-	 * Board on which the ship has been verified.
-
 	 */
 	private Board oBoard;
 	/**
@@ -37,9 +34,9 @@ public class ShipVerification
 		oBoard = null;
 		}
 	/**
-	 * Import of the vessel for which the tests are to be performed.
+	 * Importing the ship which will be verified.
 	 * 
-	 * @param oShip Ship facility for testing.
+	 * @param oShip Ship for testing.
 	 */
 	public void importShip(Ship oShip)
 		{
@@ -47,9 +44,9 @@ public class ShipVerification
 		oBoard = oShip.getBoard();
 		}
 	/**
-	 * The method checks if all of the ship's positions are on the board.
+	 * Checks if all of the ship's positions are on the board.
 	 * 
-	 * @return Returns TRUE if the ship is fully boarded, FALSE otherwise.
+	 * @return Returns TRUE if the ship is fully on board, FALSE otherwise.
 	 */
 	public boolean spacesOnBoard()
 		{
@@ -80,14 +77,14 @@ public class ShipVerification
 		return fieldsConnected(false);
 		}
 	/**
-	 * The method checks if all positions of a given vessel form a uniform structure
-	 * (they touch the edges and do not form two or more unconnected areas on the board) <br />
+	 * Checks if all positions of a given ship form a uniform structure
+	 * (they touch the edges and do not form unconnected areas on the board)
 	 *
-	 * updates: <br />
+	 * updates:
 	 *
 	 * 1.1 - adding the first parameter
 	 *
-	 * @param bStraightLines Specifies whether positions must be on a single vertical or horizontal line.
+	 * @param bStraightLines Whether positions must be on a straight line.
 	 * @return Returns TRUE if the ship is properly constructed, FALSE otherwise.
 	 */
 	public boolean fieldsConnected(boolean bStraightLines)
@@ -167,9 +164,10 @@ public class ShipVerification
 			}
 		}
 	/**
-	 * The method checks if any of a ship's square is in contact with another ship.
+	 * Checks if any of a ship's fields are in contact with another ship.
 	 * 
-	 * @return Returns FALSE if there is a contact with another ship, or TRUE otherwise.
+	 * @return Returns FALSE if there is a contact with another ship,
+         * or TRUE otherwise.
 	 */
 	public boolean NoNeighbors()
 		{

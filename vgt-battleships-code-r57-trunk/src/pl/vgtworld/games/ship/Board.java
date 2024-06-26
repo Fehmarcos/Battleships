@@ -10,18 +10,12 @@ import pl.vgtworld.exceptions.ParameterException;
  */
 public class Board
 	{
-	/**
-	 * The width of the board.
-	 */
+	
 	private int iWidth;
-	/**
-	 * The height of the board.
-	 */
+	
 	private int iHeight;
 	/**
-	 * The number of fields on the board unknown to the opponent, i.e. available for shooting.<br />
-	 * 
-	 * These are empty fields, and fields containing a ship.
+	 * Number of fields that the opponent hasn't shot at yet.
 	 */
 	private int iUnknownFields;
 	/**
@@ -36,19 +30,19 @@ public class Board
 		this(10, 10);
 		}
 	/**
-	 * Overload constructor - allows you to create a square-shaped board with a given side length.
+	 * Overload constructor - creates square-shaped boards of a given length.
 	 * 
-	 * @param iSize A value specifying the width and height of the board creation.
+	 * @param iSize A value specifying the board's width and height.
 	 */
 	public Board(int iSize)
 		{
 		this(iSize, iSize);
 		}
 	/**
-	 * Overload constructor - allows you to create boards of any width and height.
+	 * Overload constructor - creates boards of any width and height.
 	 * 
-	 * @param iWidth A value specifying the width of the board creation.
-	 * @param iHeight A value specifying the height of the board creation.
+	 * @param iWidth A value specifying the board's width.
+	 * @param iHeight A value specifying the board's height.
 	 */
 	public Board(int iWidth, int iHeight)
 		{
@@ -59,7 +53,7 @@ public class Board
 		clean();
 		}
 	/**
-	 * Displaying the board on the standard output.
+	 * Displaying the board.
 	 */
 	@Override public String toString()
 		{
@@ -100,7 +94,6 @@ public class Board
 		return sReturn;
 		}
 	/**
-	 * Returns the width of the board.
 	 * 
 	 * @return The size of the board horizontally.
 	 */
@@ -109,7 +102,6 @@ public class Board
 		return iWidth;
 		}
 	/**
-	 * Returns the height of the board.
 	 * 
 	 * @return The size of the board vertically.
 	 */
@@ -118,22 +110,20 @@ public class Board
 		return iHeight;
 		}
 	/**
-	 * Returns the number of unknown fields on the board.
 	 * 
-	 * @return Number of unknown poles.
+	 * @return Number of unknown fields.
 	 */
 	public int getUnknownQuantity()
 		{
 		return iUnknownFields;
 		}
 	/**
-	 * The method returns the field type for the given coordinates.
 	 * 
-	 * @param iX The X coordinate on the board (counted from 0).
-	 * @param iY The Y coordinate on the board (counted from 0).
+	 * @param iX The board's X coordinate (counted from 0).
+	 * @param iY The board's Y coordinate (counted from 0).
 	 * @return Returns the field type for the given coordinates.
 	 * @throws ParameterException Throws an exception when the coordinates 
-         * are out of range of the board.
+         * are out of the board's range.
 	 */
 	public FieldTypeBoard getField(int iX, int iY) throws ParameterException
 		{
@@ -144,14 +134,16 @@ public class Board
 		return aBoard[iX][iY];
 		}
 	/**
-	 * Lets you set the field type to the given coordinates. <br />
- 
- The method also ensures that the value of the Unknown Fields variable is updated when this value changes.
+         * 
+         * This method sets the field type to the coordinates, and updates the
+         * Unknown Fields variable.
 	 * 
 	 * @param iX X coordinate on the board (counted from 0).
 	 * @param iY Y coordinate on the board (counted from 0).
-	 * @param eType Type of the field, on which the field with the given coordinates is to be set.
-	 * @throws ParameterException Throws an exception when the coordinates are out of range of the board.
+	 * @param eType Field type, on which the field with the given
+         * coordinates is set.
+	 * @throws ParameterException Throws an exception when the coordinates
+         * are out of the board's range.
 	 */
 	public void setField(int iX, int iY, FieldTypeBoard eType) throws ParameterException
 		{
@@ -178,14 +170,12 @@ public class Board
 			}
 		}
 	/**
-	 * The method allows you to resize an already created board.<br />
+	 * Lets you resize an already created board.
 	 * 
-	 * To avoid the potential loss of information, do not use on a board filled with ships.
-	 * For this reason, additionally after resizing, the {@link #clear ()} method is called.
-	 * 
-	 * @param iWidth The new width of the board.
-	 * @param iHeight The new height of the board.
-	 * @throws ParameterException Throws an exception if the given width and / or height is less than 1.
+	 * To avoid information loss, only use on an empty board.
+	 * After resizing, the {@link #clear ()} method is called.
+         * 
+	 * @throws ParameterException Throws an exception if width and/or height is less than 1.
 	 */
 	 //TODO zmienSize
 	public void zmienSize(int iWidth, int iHeight) throws ParameterException
@@ -201,7 +191,7 @@ public class Board
 		clean();
 		}
 	/**
-	 * The method clears the whole board by setting the type of all fields to "empty".
+	 * Clears the whole board, setting all fields to "empty".
 	 */
 	public void clean()
 		{
