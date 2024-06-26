@@ -215,10 +215,17 @@ public class Ship
 	 * Sets the coordinates of all ship parts to the default values ​​(-1, -1).
          * @throws ParameterException 
 	 */
-	public void resetFields() throws ParameterException
+	public void resetFields()
         {
-                for (int i = 1; i <= iSize; ++i)
+			try
+			{
+               for (int i = 1; i <= iSize; ++i)
                     setField(i, -1, -1);
+			}
+			catch (ParameterException e)
+			{
+			   throw new DeveloperException(e);
+			}
         }
 	/**
 	 * Checks whether a shot within a certain coordinate hits a ship.
