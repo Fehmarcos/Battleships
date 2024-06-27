@@ -38,7 +38,7 @@
 
 ## About
 
-### This is a project developed during de software manutenning discipline on UTFPR software engineering degree. The original base project can be found in: https://sourceforge.net/projects/vgt-battleships/
+### This project is a fork from a previous iteration of this project, found in https://github.com/FelipePardim/Battleships . Our project focuses on QoL changes, such as giving you the ability to rename ships, adding a proper end screen, fixing window sizes and adding custom sounds.
 
 ---
 
