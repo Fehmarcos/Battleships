@@ -30,7 +30,8 @@
   - [Running on NetBeans](#running-netbeans).
 - [Technologies](#technologies).
 - [License](#license).
-- [Authors](#authors).
+- [Original Authors](#oauthors).
+- 
 
 ---
 
@@ -130,7 +131,7 @@ This project is under [GNU v3.0](https://github.com/FelipePardim/Battleships/blo
 ---
 
 <!-- About authors -->
-<h2 id="authors">
+<h2 id="oauthors">
     👨🏽‍💻 Authors:
     <div>
         <a href="https://github.com/FelipePardim" margin="10px">
